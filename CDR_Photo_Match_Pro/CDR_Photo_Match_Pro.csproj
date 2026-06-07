@@ -52,5 +52,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+<ItemGroup>
+  <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net45" Version="1.0.3" />
+</ItemGroup>
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
