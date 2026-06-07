@@ -2,7 +2,8 @@ name: Build CDR Photo Match Pro
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -15,19 +16,15 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+
       - name: Restore NuGet Packages
         run: nuget restore CDR_Photo_Match_Pro.sln
 
       - name: Build Release
-       run: msbuild CDR_Photo_Match_Pro.sln /restore /p:Configuration=Release /p:Platform="Any CPU"
+        run: msbuild CDR_Photo_Match_Pro.sln /restore /p:Configuration=Release
 
-      - name: Package EXE
-        run: |
-          mkdir output
-          copy "CDR_Photo_Match_Pro\bin\Release\CDR Photo Match Pro.exe" output\
-
-      - name: Upload EXE
+      - name: Upload Build Files
         uses: actions/upload-artifact@v4
         with:
-          name: CDR-Photo-Match-Pro-EXE
-          path: output
+          name: build-files
+          path: .
