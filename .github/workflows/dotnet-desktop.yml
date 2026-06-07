@@ -15,9 +15,11 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+      - name: Restore NuGet Packages
+        run: nuget restore CDR_Photo_Match_Pro.sln
 
       - name: Build Release
-        run: msbuild CDR_Photo_Match_Pro.sln /p:Configuration=Release /p:Platform="Any CPU"
+       run: msbuild CDR_Photo_Match_Pro.sln /restore /p:Configuration=Release /p:Platform="Any CPU"
 
       - name: Package EXE
         run: |
